@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/static/dashboard_admin_handle.js"></script>
+    <!-- Bootstrap CSS --> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<html>
+<body onload = "startTime()">
+
+
+
+
+<div class ="topnav">
+  
+  <h5 style = 'float:right;margin: 7px;' id="temp_">User id: <%= User_id %>
+  </h5>
+  <div style ="text-align: center;padding-top: 10px;"><h5 id="clock" ></5></div>
+</div>
+
+
+<div class ="sidenav">
+  <p id="userdetails">User Profile</p>
+        <br>
+        <br>
+   <p id="shiftdetails">Shifts</p>
+</div>
+<br>
+<div id="test" class ="dashboard" style="display:none" >
+  <div class = "userinfo">
+  </div>
+  <ul class="userdetails">
+    <li class ="userinfo">User Id: <%= User_id %></li>
+    <li class ="userinfo">Name: <%= user %></li>
+    <li class ="userinfo">Department: <%= department %></li>
+    <form action="/users/dashboard_admin_logout" method="POST">
+      <input type="submit" value="Log Out">
+    </form>
+  </ul>
+
+ </div>
+  
+
+</div>
+<br>
+<div class ="dashboard" id="dashboard">
+  <div class="form-popup" id="myForm" style='display:none'>
+    <form action="/users/dashboard_admin" method="POST" class="form-container">
+      <input type="hidden" id="user_id_input" name="user_id_input" value="" />
+      <input type="hidden" id="manager_id_input" name="manager_id_input" value='<%= User_id %>' />
+      <input type="hidden" id="shift_id_input" name="shift_id_input" value="" />
+      <p id='useridrate'>Rate </p>
+      <label for="Good">Good</label>
+      <input type="radio" id="rating" name="rating" value="Good">
+      <label for="Bad">Bad</label>
+      <input type="radio" id="rating" name="rating" value="Bad">
+  
+      <input type="submit" value="Send Evaluation">
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  <br>
+<!-- <button class="button" id="button">Show Shifts</button> -->
+<div id="Show_Shifts">
+  
+  <div class ="search"><input type="text" class="myinput" id="myInput" onkeyup="search()" placeholder="Search Shift Data">
+    <label for="Name_Search">Name</label>
+    <input type="radio" id="Name_Search" name="drone" value="0">
+    <label for="User_id_Search">User ID</label>
+    <input type="radio" id="User_id_Search" name="drone" value="1">
+    <label for="Shift_id_Search">Shift ID</label>
+    <input type="radio" id="Shift_id_Search" name="drone" value="2">
+    <label for="Date_Search">Date</label>
+    <input type="radio" id="Date_Search" name="drone" value="3">
+  </div>
+    <div> <!-- Div for error messages -->
+      <div id="Nore" style="display:none">
+        <p style="text-align:center;">No Results</p>
+      </div>
+      <div id="Table" class="myTable" > <!-- Div for table -->
+        <table id="myTable">
+          <tr>
+            <th>Name</th>
+            <th>User</th>
+            <th>Shift</th>
+            <th>Date</th>
+          </tr>
+          <% employees.map((result)=>{ %>
+            <tr>
+              <td>
+
+                <%= result.name%>
+
+              </td>
+              <td>
+                <p onclick="openForm('<%= result.user_id %>',' <%= result.shift_id %>')">
+
+                  <%= result.user_id%>
+                </p>
+              </td>
+              <td>
+                <%= result.shift_id %>
+              </td>
+              <td>
+                <%= result.date %>
+              </td>
+
+            </tr>
+            <% }) %>
+        </table>
+      </div>
+    </div>
+   </div> 
+</div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

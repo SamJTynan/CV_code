@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+  <!-- <script src="/static/dashboard_admin_higher_handler.js"></script> -->
+  <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.ie11.min.js"></script>
+  <link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body onload="startTime()">
+
+  <div class="topnav">
+
+    <h5 style='float:right;margin: 7px;'>User id: <%= User_id %>
+    </h5>
+    <div style="text-align: center;padding-top: 10px;">
+      <h5 id="clock">
+        </h5>
+    </div>
+  </div>
+
+  <div class="sidenav">
+    <p id="userdetails">User Profile</p>
+    <br>
+    <br>
+    <p id="shiftdetails">Shifts Planned</p>
+    <br>
+    <br>
+    <p id="pickshifts">Pick Shift</p>
+    <br>
+    <br>
+    <p id="clockoutnin">Clock in/out</p>
+  </div>
+
+
+  <div id="schedule_calendar" class = "calendar" style="height:800px; width:1550px; align-self: auto; display:none; "></div>
+  <br>
+ 
+    <div id="clocksection" style="display:none">
+      <div id="calendar" class="calendar" style="width:1300px; 
+      height:730px;
+      float: right;
+      margin-top:6px;" ></div>
+      <div id="clockdiv" style ='float:right; margin-right: 70px;'>
+        <br>
+        <br>
+        <form id='test' action="/users/dashboard" method="POST">
+          <input type="hidden" id="time" name="time" value="" />
+          <input type="hidden" id="user_id" name="user_id" value="" />
+          <button class="button" id="clock_button" name="clock_button" value='in' onclick="clocking('in')" style ="width: 85px;">Clock In</button>
+          <br>
+          <br>
+          <button class="button" id="clock_button" name="clock_button" value='out' onclick="clocking('out')">Clock Out</button>
+        </form>
+        </div> 
+    </div>
+  </div>
+
+  <br>
+
+
+
+
+  <div id="Show_Shifts" style ="display:none;" >
+  <div class ="dashboard" style="margin-left:450px;">
+  <div class="form-popup" id="myForm" style ="display:none;" >
+    <form action="/users/employee_higher" method="POST" class="form-container">
+      <p id='shifttemp'></p>
+      <input type="hidden" id="user_id_input" name="user_id_input" value="" />
+      <input type="hidden" id="shift_id_input" name="shift_id_input" value="" />
+      <input type="hidden" id="date_id_input" name="date_id_input" value="" />
+      <label for="appt">Select a time:</label>
+      <input type="time" id="starttime" name="starttime">
+      <label for="appt">Select a time:</label>
+      <input type="time" id="endtime" name="endtime">
+
+      <input type="submit" value="Submit">
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+
+ 
+  <div id="Table" class="myTable" style="margin-left: 40px;"> <!-- Div for table -->
+    <table id="myTable">
+      <tr> 
+        <th>Shift id</th>
+        <th>Date</th>
+        <th>Department</th>
+      </tr>
+      <% shifts_ava.map((result)=>{ %>
+        <tr>
+          <td>
+            <p onclick="openForm('<%= result.shift_id %>',' <%= result.date %>')">
+              <%= result.shift_id%>
+            </p>
+          </td>
+          <td>
+            <%= result.date %>
+          </td>
+          <td>
+            <%= result.department %>
+          </td>
+        </tr>
+        <% }) %>
+    </table>
+  </div> 
+</div>
+</div>
+
+<div id="test" class ="dashboard"  >
+  <div class = "userinfo">
+  </div>
+  <ul class="userdetails">
+    <li class ="userinfo">User Id: <%= User_id %></li>
+    <li class ="userinfo">Name: <%= user %></li>
+    <li class ="userinfo">Level: <%= level %> </li>
+    <li class ="userinfo">Level: <%= rating %> </li>
+    <form action="/users/dashboard_admin_logout" method="POST">
+      <input type="submit" value="Log Out">
+    </form>
+  </ul>
+
+ </div>
+  
+ 
+
+<script>
+
+
+
+  $(document).ready(function () {
+    $("#clockoutnin").click(function () {
+        $('#clocksection').fadeIn();
+        $('#Show_Shifts').fadeOut();
+        $('#schedule_calendar').fadeOut();
+        $('#userinfo').fadeOut();
+
+        // $('#calendar').css('height','730px');
+    });
+
+    $("#pickshifts").click(function () {
+        $('#Show_Shifts').fadeIn();
+        $('#clocksection').fadeOut();
+        $('#schedule_calendar').fadeOut();
+        $('#test').fadeOut();
+        // $('#calendar').css('height','730px');
+    });
+
+     $("#shiftdetails").click(function () {
+        $('#schedule_calendar').fadeIn();
+        $('#clocksection').fadeOut();
+        $('#Show_Shifts').fadeOut();
+        $('#test').fadeOut();
+        // $('#calendar').css('height','730px');
+    });
+
+    $("#userdetails").click(function () {
+        $('#schedule_calendar').fadeOut();
+        $('#clocksection').fadeOut();
+        $('#Show_Shifts').fadeOut();
+        $('#test').fadeIn();
+        // $('#calendar').css('height','730px');
+    });
+
+    
+    
+
+
+}); 
+
+  let User_id = '<%-User_id%>';
+
+  function openForm(shift, date) {
+
+    // date = date.substring(4,16);
+    console.log(date);
+    document.getElementById("shifttemp").innerHTML = shift;
+    document.getElementById("shift_id_input").value = shift;
+    document.getElementById("user_id_input").value = User_id;
+    document.getElementById("date_id_input").value = date.substring(4, 16);
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+
+  const Calendar = tui.Calendar;
+  const container = document.getElementById('calendar');
+  const options = {
+    defaultView: 'day',
+    timezone: {
+
+    },
+    calendars: [
+      {
+        id: 'cal1',
+        name: 'work',
+      },
+    ],
+  };
+
+  const Schedule_Calendar = tui.Calendar;
+  const Schedule_container = document.getElementById('schedule_calendar');
+  const Schedule_options = {
+    defaultView: 'week',
+    timezone: {
+
+    },
+    calendars: [
+      {
+        id: 'cal2',
+        name: 'work',
+      },
+    ],
+  };
+
+
+
+  const calendar = new Calendar(container, options);
+  const calendar2 = new Calendar(Schedule_container, Schedule_options);
+
+  
+  let display_shift = JSON.parse('<%-shifts%>');
+  // let shifts_ava = JSON.parse('<%-shifts_ava%>');
+  // console.log(shifts_ava);
+
+  for (i = 0; i < display_shift.length; i++) {
+    let temp = (JSON.stringify(display_shift[i].date)).substring(1, JSON.stringify(display_shift[i].date).indexOf('T') + 1);
+    start = temp + display_shift[i].starttime;
+    end = temp + display_shift[i].endtime;
+    console.log(start + " " + end);
+    calendar2.createEvents([
+      {
+        id: display_shift[i].shift_id,
+        calendarId: 'cal2',
+        title: display_shift[i].shift_id,
+        start: start,
+        end: end,
+      }
+    ]);
+  }
+
+  function clocking(data)
+{
+  let User_id = '<%-User_id%>'; 
+  console.log(data);
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  h = checkTime(h);
+  m = checkTime(m);
+  s = checkTime(s);
+  let time =  h + ":" + m + ":" + s;
+  let day = today.getDate();
+  let month = today.getMonth() + 1;
+  day = checkTime(day);
+  month = checkTime(month);
+  let year = today.getFullYear();
+  let temp = year + "-" + month + "-" + day + "T"+ h + ":" + m + ":" + s;
+  console.log(temp);
+  document.getElementById("time").value = temp;
+  document.getElementById("user_id").value = User_id;
+  if(data === 'in')
+  {
+    starttime = temp; 
+    calendar.createEvents([
+    {
+      id: 'clock',
+      calendarId: 'cal1',
+      title: 'Clocked in',
+      start: temp,
+      end:  temp,
+    }
+  ]);
+    
+  }
+  else
+  {
+    calendar.updateEvent('clock', 'cal1', {
+    title: 'Shift End',
+    end:  temp,
+    });
+    
+  }
+    
+}
+
+
+  function startTime() {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+    setTimeout(startTime, 1000);
+  }
+
+  function checkTime(i) {
+    if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+    return i;
+  }
+
+
+</script>
+
+</html>
