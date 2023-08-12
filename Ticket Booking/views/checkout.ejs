@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+ <title>Checkout Page </title>
+</head>
+<style>
+
+.button { /*Edited to make sure buttons can fit within page design*/
+  background-color: #f4511e ;
+  border: none ;
+  color: white ;
+  padding: 10px 15px ;
+  text-align: center ;
+  font-size: 14px ;
+  margin: 4px 2px ;
+  opacity: 0.6 ;
+  transition: 0.3s ;
+  display: inline-block ;
+  text-decoration: none ;
+  cursor: pointer ;
+  
+}
+.button:hover {
+	opacity: 1 ;
+}
+
+</style>
+<body>
+    
+<div>
+    <a href = "\"><h1 class = "header" >Ticketsaver</h1></a>
+</div>
+
+<!--- Get the relevant event data, check if the user entered in taken seats, and check if there was another error-->
+<br><br>
+<% if(typeof ticketFail !=='undefined'){ %>
+    <h3><%= ticketFail %></h3>
+    <% } else { %>
+<div style = "float:right;">
+    <% if (typeof curr_event !== 'undefined') { %>
+        <h3>Book Tickets For <%= curr_event%></h3> <% } %>
+    <% if (typeof seatNoFail !== 'undefined') { %>
+        <h3><%= seatNoFail %></h3> <% } %>
+<form action="/checkout" method="POST">        
+<div  style =" 
+    margin-right: 100px; height: 40px;">
+	<input id="seatnum" name = "seatnum" type="text" class="form-control "  placeholder="Select ticket" required>
+	 <br>
+	 <button   class = "button" style = "margin:0 auto;
+    display:block;" type="submit">Book</button>
+	<br>
+    <br>
+    <br>
+	</div>
+	
+	<br>
+	
+</div>
+
+</form>
+</div>
+
+
+<!--- Check each and every seat in the grid to see if its taken, and load the relevant seat image.-->
+<div class ="container">
+<div class = "outergrid" >
+  <div class="grid">
+    <% let i = 1;
+       console.log(takenseat);
+       if(typeof takenseat !== 'undefined') { 
+           if(takenseat.includes(i)) { %>
+           <div class="cell">1<img src = "seat-red.png" id="1"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">1<img src = "seat.png" id="1"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">2<img src = "seat-red.png" id="2"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">2<img src = "seat.png" id="2"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">3<img src = "seat-red.png" id="3"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">3<img src = "seat.png" id="3"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">4<img src = "seat-red.png" id="4"></div>
+    <% 
+    console.log("*************************i = " + i);} 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">4<img src = "seat.png" id="4"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">5<img src = "seat-red.png" id="5"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">5<img src = "seat.png" id="5"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">6<img src = "seat-red.png" id="6"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">6<img src = "seat.png" id="6"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">7<img src = "seat-red.png" id="7"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">7<img src = "seat.png" id="7"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">8<img src = "seat-red.png" id="8"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">8<img src = "seat.png" id="8"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">9<img src = "seat-red.png" id="9"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">9<img src = "seat.png" id="9"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">10<img src = "seat-red.png" id="10"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">10<img src = "seat.png" id="10"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">11<img src = "seat-red.png" id="11"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">11<img src = "seat.png" id="11"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">12<img src = "seat-red.png" id="12"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">12<img src = "seat.png" id="12"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">13<img src = "seat-red.png" id="13"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">13<img src = "seat.png" id="13"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">14<img src = "seat-red.png" id="14"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">14<img src = "seat.png" id="14"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">15<img src = "seat-red.png" id="15"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">15<img src = "seat.png" id="15"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">16<img src = "seat-red.png" id="16"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">16<img src = "seat.png" id="16"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">17<img src = "seat-red.png" id="17"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">17<img src = "seat.png" id="17"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">18<img src = "seat-red.png" id="18"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">18<img src = "seat.png" id="18"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">19<img src = "seat-red.png" id="19"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">19<img src = "seat.png" id="19"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">20<img src = "seat-red.png" id="20"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">20<img src = "seat.png" id="20"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">21<img src = "seat-red.png" id="21"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">21<img src = "seat.png" id="21"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">22<img src = "seat-red.png" id="22"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">22<img src = "seat.png" id="22"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">23<img src = "seat-red.png" id="23"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">23<img src = "seat.png" id="23"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">24<img src = "seat-red.png" id="24"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">24<img src = "seat.png" id="24"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">25<img src = "seat-red.png" id="25"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">25<img src = "seat.png" id="25"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">26<img src = "seat-red.png" id="26"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">26<img src = "seat.png" id="26"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">27<img src = "seat-red.png" id="27"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">27<img src = "seat.png" id="27"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">28<img src = "seat-red.png" id="28"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">28<img src = "seat.png" id="28"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">29<img src = "seat-red.png" id="29"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">29<img src = "seat.png" id="29"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">30<img src = "seat-red.png" id="30"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">30<img src = "seat.png" id="30"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">31<img src = "seat-red.png" id="31"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">31<img src = "seat.png" id="31"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">32<img src = "seat-red.png" id="32"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">32<img src = "seat.png" id="32"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">33<img src = "seat-red.png" id="33"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">33<img src = "seat.png" id="33"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">34<img src = "seat-red.png" id="34"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">34<img src = "seat.png" id="34"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">35<img src = "seat-red.png" id="35"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">35<img src = "seat.png" id="35"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">36<img src = "seat-red.png" id="36"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">36<img src = "seat.png" id="36"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">37<img src = "seat-red.png" id="37"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">37<img src = "seat.png" id="37"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">38<img src = "seat-red.png" id="38"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">38<img src = "seat.png" id="38"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">39<img src = "seat-red.png" id="39"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">39<img src = "seat.png" id="39"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">40<img src = "seat-red.png" id="40"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">40<img src = "seat.png" id="40"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">41<img src = "seat-red.png" id="41"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">41<img src = "seat.png" id="41"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">42<img src = "seat-red.png" id="42"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">42<img src = "seat.png" id="42"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">43<img src = "seat-red.png" id="43"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">43<img src = "seat.png" id="43"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">44<img src = "seat-red.png" id="44"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">44<img src = "seat.png" id="44"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">45<img src = "seat-red.png" id="45"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">45<img src = "seat.png" id="45"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">46<img src = "seat-red.png" id="46"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">46<img src = "seat.png" id="46"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">47<img src = "seat-red.png" id="47"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">47<img src = "seat.png" id="47"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">48<img src = "seat-red.png" id="48"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">48<img src = "seat.png" id="48"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">49<img src = "seat-red.png" id="49"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">49<img src = "seat.png" id="49"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">50<img src = "seat-red.png" id="50"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">50<img src = "seat.png" id="50"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">51<img src = "seat-red.png" id="51"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">51<img src = "seat.png" id="51"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">52<img src = "seat-red.png" id="52"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">52<img src = "seat.png" id="52"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">53<img src = "seat-red.png" id="53"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">53<img src = "seat.png" id="53"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">54<img src = "seat-red.png" id="54"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">54<img src = "seat.png" id="54"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">55<img src = "seat-red.png" id="55"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">55<img src = "seat.png" id="55"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">56<img src = "seat-red.png" id="56"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">56<img src = "seat.png" id="56"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">57<img src = "seat-red.png" id="57"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">57<img src = "seat.png" id="57"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">58<img src = "seat-red.png" id="58"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">58<img src = "seat.png" id="58"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">59<img src = "seat-red.png" id="59"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">59<img src = "seat.png" id="59"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">60<img src = "seat-red.png" id="60"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">60<img src = "seat.png" id="60"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">61<img src = "seat-red.png" id="61"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">61<img src = "seat.png" id="61"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">62<img src = "seat-red.png" id="62"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">62<img src = "seat.png" id="62"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">63<img src = "seat-red.png" id="63"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">63<img src = "seat.png" id="63"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">64<img src = "seat-red.png" id="64"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">64<img src = "seat.png" id="64"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">65<img src = "seat-red.png" id="65"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">65<img src = "seat.png" id="65"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">66<img src = "seat-red.png" id="66"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">66<img src = "seat.png" id="66"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">67<img src = "seat-red.png" id="67"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">67<img src = "seat.png" id="67"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">68<img src = "seat-red.png" id="68"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">68<img src = "seat.png" id="68"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">69<img src = "seat-red.png" id="69"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">69<img src = "seat.png" id="69"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">70<img src = "seat-red.png" id="70"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">70<img src = "seat.png" id="70"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">71<img src = "seat-red.png" id="71"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">71<img src = "seat.png" id="71"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">72<img src = "seat-red.png" id="72"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">72<img src = "seat.png" id="72"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">73<img src = "seat-red.png" id="73"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">73<img src = "seat.png" id="73"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">74<img src = "seat-red.png" id="74"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">74<img src = "seat.png" id="74"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">75<img src = "seat-red.png" id="75"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">75<img src = "seat.png" id="75"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">76<img src = "seat-red.png" id="76"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">76<img src = "seat.png" id="76"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">77<img src = "seat-red.png" id="77"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">77<img src = "seat.png" id="77"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">78<img src = "seat-red.png" id="78"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">78<img src = "seat.png" id="78"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">79<img src = "seat-red.png" id="79"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">79<img src = "seat.png" id="79"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">80<img src = "seat-red.png" id="80"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">80<img src = "seat.png" id="80"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">81<img src = "seat-red.png" id="81"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">81<img src = "seat.png" id="81"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">82<img src = "seat-red.png" id="82"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">82<img src = "seat.png" id="82"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">83<img src = "seat-red.png" id="83"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">83<img src = "seat.png" id="83"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">84<img src = "seat-red.png" id="84"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">84<img src = "seat.png" id="84"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">85<img src = "seat-red.png" id="85"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">85<img src = "seat.png" id="85"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">86<img src = "seat-red.png" id="86"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">86<img src = "seat.png" id="86"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">87<img src = "seat-red.png" id="87"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">87<img src = "seat.png" id="87"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">88<img src = "seat-red.png" id="88"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">88<img src = "seat.png" id="88"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">89<img src = "seat-red.png" id="89"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">89<img src = "seat.png" id="89"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">90<img src = "seat-red.png" id="90"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">90<img src = "seat.png" id="90"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">91<img src = "seat-red.png" id="91"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">91<img src = "seat.png" id="91"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">92<img src = "seat-red.png" id="92"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">92<img src = "seat.png" id="92"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">93<img src = "seat-red.png" id="93"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">93<img src = "seat.png" id="93"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">94<img src = "seat-red.png" id="94"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">94<img src = "seat.png" id="94"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">95<img src = "seat-red.png" id="95"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">95<img src = "seat.png" id="95"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">96<img src = "seat-red.png" id="96"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">96<img src = "seat.png" id="96"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">97<img src = "seat-red.png" id="97"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">97<img src = "seat.png" id="97"></div>
+   <% }i++; %>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">98<img src = "seat-red.png" id="98"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">98<img src = "seat.png" id="98"></div>
+   <% } i++;%>
+   <%
+   if(takenseat.includes(i)) { %>
+           <div class="cell">99<img src = "seat-red.png" id="99"></div>
+    <% } 
+    if(!takenseat.includes(i)) {
+     %>
+   <div class="cell">99<img src = "seat.png" id="99"></div>
+   <% } } %>
+   
+</div>
+</div>
+</div>
+<br>
+<p id = "edu3"></h3>
+
+<% } %>
+</body>
+</html>

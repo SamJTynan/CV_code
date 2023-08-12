@@ -1,0 +1,260 @@
+h1.header {  /* Used for a majority of titles across every page */
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 18px;
+	letter-spacing: -1px;
+	word-spacing: 2px;
+	color: #f05537;
+	font-weight: 700;
+	text-decoration: none;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+	padding-left: 40px;
+	padding-right: 40px;
+	float: left;
+
+}
+h1.centretext { /* Used for the text in top of divs on pages like changePassword, login and register.ejs */
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 34px;
+	letter-spacing: -1px;
+	word-spacing: 2px;
+	color: #30305c;
+	font-weight: 900;
+
+}
+
+div.center { /* Div used for the left of div for the index page */
+
+  width: 400px;
+  padding: 10px;
+   border-radius: 15px 0px 0px 15px;
+   background-color: #f6f4f2;
+   margin-left: 40px;
+   float: left;
+   height :392px;
+
+   
+  
+}
+
+div.middle {
+	
+	margin: auto;
+}
+div.centerlogin {  /* Div used to conatin form elements for pages like changePassword, login and register.ejs*/
+
+   width: 600px;
+   padding: 10px;
+   border-radius: 15px 15px 15px 15px;
+   outline: 3px solid;
+   outline-color: #30305c;
+   background-color: #f6f4f2;
+   margin: auto;
+   height :500px;
+   
+}
+div.ticket {  /* Div used to display tickets on profile page */
+   width: 600px;
+   padding: 10px;
+   border-radius: 15px 15px 15px 15px;
+   outline: 3px solid;
+   outline-color: #30305c;
+   background-color: #f6f4f2;
+   margin: auto;
+   height :300px;
+	
+}
+div.smaller {
+	 
+  width: 40%;
+  border: 2px solid #73AD21;
+  padding: 10px;
+   border-radius: 5px;
+   
+}
+div.profile-a{ /* Left div used to let user pick profile picture on profile page  */
+	
+   width: 400px;
+   border-radius: 15px 0px 0px 15px;
+   padding: 10px;
+   outline: 3px solid;
+   outline-color: #30305c;
+   background-color: #f6f4f2;
+   text-align: center;
+   height :500px;
+   float: left;
+   
+	
+}
+
+div.profile-b{ /* Right div used to let user pick profile options on profile page  */
+	
+   width: 700px;
+   padding: 10px;
+   border-radius: 0px 15px 15px 0px;
+   outline: 3px solid;
+   outline-color: #30305c;
+   background-color: #f6f4f2;
+   text-align: center;
+   height :500px;
+   float: left;
+   margin-left:5px;
+	
+}
+div.profilePicture{
+	 
+	
+	 
+	 
+}
+
+div.top{
+   margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+height: 25px;
+background-color: #000000;
+position: relative
+
+
+
+}
+ul.taskbar { /* Used for task bar on homepage */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+li.option { /* Used for task bar on homepage */
+  float: right;
+}
+
+
+li a {  /* Used for task bar on homepage */
+ font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 13px;
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 35px;
+  text-decoration: none;
+}
+li a:hover { /* Used for task bar on homepage */
+  background-color: #f3f3f3;
+}
+
+img.display {  /* Class used for slideshow script on index page */
+    opacity: 1.0;
+	width :600px;
+	height :392px;
+	position: absolute;
+	border-radius: 0px 15px 15px 0px;
+	transition: opacity 0.5s ease-in;
+	float: left;
+
+}
+
+img.display + img.display { opacity: 0; }
+
+.button { /* Class for buttons used on almost every page  */
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button {  
+  background-color: #f4511e ;
+  border: none ;
+  color: white ;
+  padding: 16px 32px ;
+  text-align: center ;
+  font-size: 16px ;
+  margin: 4px 2px ;
+  opacity: 0.6 ;
+  transition: 0.3s ;
+  display: inline-block ;
+  text-decoration: none ;
+  cursor: pointer ;
+  
+}
+
+.button:hover {
+	opacity: 1 ;
+}
+
+.form-control {
+	height: 40px ;
+    text-align: left;
+	border-radius: 10px 10px 10px 10px;
+}
+
+span.input-group-addon
+{
+	border-radius: 10px 10px 10px 10px;
+}
+
+label{  /* Used for form labels on most pages*/
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 18px;
+	letter-spacing: -1px;
+	word-spacing: 2px;
+	color:  #30305c;
+	font-weight: 500;
+	margin-left: 143px;
+	margin-top: 9px;
+	margin-bottom: 9px;
+}
+
+a.signup{
+	
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	display:inline-block;
+}
+a.signup:link {
+  color: #30305c;
+}
+
+a.signup:visited {
+  color: #f05537;
+}
+.outergrid { /* Used for outer grid for each cell in checkout page */
+ margin: auto;
+ background: black;
+  display: inline-block;
+  border: 5px solid black;
+}
+.grid { /* Used for to format cell style for things like columns and rows*/
+  display: grid;
+  grid-template-columns: repeat(9, 80px);
+  grid-template-rows: repeat(11, 80px);
+  grid-gap: 5px;
+}
+
+.cell {  /* Used for text within cells */
+ 
+  display: flex;
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: bold;
+  background: white;
+}
+.cell img{ /* Used to format images in cells  */
+ padding-right: 10px; 
+ margin:auto;
+ height:65px;
+ width:55px;
+}

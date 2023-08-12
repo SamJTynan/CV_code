@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Event Page</title>
+ <style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {  /*--Taken from: https://www.w3schools.com/howto/howto_js_filter_lists.asp */
+
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 30%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  position: center;
+}
+
+#myUL {   /* Taken from: https://www.w3schools.com/howto/howto_js_filter_lists.asp */
+  list-style-type: none;
+  padding: 10px;
+  margin-left: 20px;
+}
+
+#myUL li a{   /* Each entry in list is given a border and div as part of their styling instead of making every list entry be in a div */
+   width: 400px; 
+   padding: 10px;
+   border-radius: 5px 5px 5px 5px;
+   outline: 3px solid;
+   outline-color: #30305c;
+   background-color: #ffffff;
+   height :180px;
+   margin-bottom: 40px;
+   text-align:left;
+   display: block;
+   color: #30305c;
+   
+}
+
+#myUL li a:hover:not(.header) { 
+  background-color: #eee;
+}
+ img{ /* Each image on this page is used for the list entries and are styled to make sure regardless of side they fit neatly within the */
+
+ width: 200px; 
+ height:120px;
+ float:right;
+ display: flex;
+ align-items: center;
+ margin-top: 17px;
+ border-radius: 5px 5px 5px 5px;
+  outline: 2px solid;
+  outline-color: #30305c;
+  
+}
+
+#myUL li p{
+text-align:left;
+
+}
+label
+{
+ font-size: 16px;
+
+}
+</style>
+</head>
+<body>
+<div>
+    <a href = "\"><h1 class = "header" >Ticketsaver</h1></a>
+
+</div>
+
+<br><br><br>
+<div class = "container" style = " background-color: #f6f4f2;"> <!-- Div to help-->
+<div style = "float:right;text-align:center"> <!-- Div to keep filter options inscase user wants to filter event types instead of  manually searching it -->
+<h3>Filter</h3>
+		<label><input type="radio" name="typeRadio" value="comedy">Comedy</label> <!-- Checks comedy  -->
+        <label><input type="radio" name="typeRadio" value="sport">Sport</label>  <!-- Checks sport  -->
+        <label><input type="radio" name="typeRadio" value="drama"> Drama</label> <!-- Checks drama  -->
+		<label><input type="radio" name="typeRadio" value="concert"> Concert</label> <!-- Checks concert -->
+</div>
+
+<div class = "container">
+<h2>Events</h2>
+<input type="text" id="myInput"  class="form-control" onkeyup="myFunction()" placeholder="Search for Event" title="Type in a event">  <!-- Div to keep filter options inscase user wants to filter event types instead of  manually searching it -->
+
+
+<ul id="myUL"> 
+  <li class =  "comedy category"><a href="#"><img src = "comedy.jpg">Comedy Night<br><br> <!-- Entry for comedy event -->
+ 
+  <h3>Tickets avliable</h3> 
+  <h4>From the 17th-27th of November</h4> <!-- Showing dates -->
+  </a>
+  <form action="/Event", method = "POST">
+    <label><input type="text" name="comedy" value="Comedy Night" style = "display: none"></label>
+     <button  class = "button" type="submit">Book Now!</button>
+  </form>
+  </li>
+  
+  <li class =  "sport category"><a href="#"><img src = "sport-football.jpg">Football Game<br><br> <!-- Entry for football sport event -->
+  
+  <h3>Tickets avliable</h3>
+  <h4>From the 13th-26th of October</h4>  <!-- Showing dates -->
+  
+  </a>
+  <form action="/Event", method = "POST">
+    <label><input type="text" name="Football" value="Football" style = "display: none"></label>
+      <button  class = "button" type="submit">Book Now!</button> <!-- Takes user to checkput page for that respective event  -->
+  </form>
+  </li>
+  
+   <li class =  "sport category"><a href="#"><img src = "sport-hurling.jpg">Hurling Game<br><br> <!-- Entry for hurling sport event -->
+  <h3>Tickets avliable</h3>
+  <h4>From the 14th-29th of December</h4>  <!-- Showing dates -->
+  </a>
+  <form action="/Event", method = "POST">
+    <label><input type="text" name="Hurling" value="Hurling" style = "display: none"></label>
+      <button  class = "button" type="submit">Book Now!</button>  <!-- Takes user to checkput page for that respective event  -->
+  </form>
+  </li>
+  
+   <li class =  "drama category"><a href="#"><img src = "drama.jpg">Play Event<br><br> <!-- Entry for drama event -->
+  <h3>Tickets avliable</h3>
+  <h4>From the 15th-27th of January</h4>  <!-- Showing dates -->
+  </a>
+  <form action="/Event", method = "POST">
+    <label><input type="text" name="Play" value="Play" style = "display: none"></label>
+      <button  class = "button" type="submit">Book Now!</button>  <!-- Takes user to checkput page for that respective event  -->
+  </form>
+  </li>
+  
+   <li class =  "concert category"><a href="#"><img src = "concert.jpg">Concert Event<br><br> <!-- Entry for concert event -->
+  <h3>Tickets avliable</h3>
+  <hh>From the 1st-15th of Feburary</h4>  <!-- Showing dates -->
+  </a>
+  <form action="/Event", method = "POST">
+    <label><input type="text" name="Concert" value="Concert" style = "display: none"></label>
+      <button  class = "button" type="submit">Book Now!</button>  <!-- Takes user to checkput page for that respective event  -->
+  </form>
+  </li>
+  
+</ul>
+</div>
+
+<script>
+function myFunction() { // from: https://www.w3schools.com/howto/howto_js_filter_lists.asp 
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+<script>
+$(document).ready(function(){ //Taken from: https://www.tutorialrepublic.com/faq/show-hide-divs-based-on-radio-button-selection-in-jquery.php
+    $('input[type="radio"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var targetcategory = $("." + inputValue);
+        $(".category").not(targetcategory).hide();
+        $(targetcategory).show();
+    });
+});
+</script>
+</div>
+</body>
+</html>

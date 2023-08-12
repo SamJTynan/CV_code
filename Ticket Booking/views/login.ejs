@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div>
+  <a href = "\"><h1 class = "header" >Ticketsaver</h1></a>
+</div>
+<br><br>
+<div class ="centerlogin"> <!-- Div to center every form in this page -->
+<h1 class = "centretext" style = "text-align: center" >Login to book tickets</h1> 
+<br>
+<form method="post" action="/login">
+<label for="Email">Email:</label><br>
+<div class="input-group" style ="width: 50%; margin-left: auto;
+    margin-right: auto; height: 40px;">
+	<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+    <input id="email" type="email" class="form-control" name="email" placeholder="Email" required> <!-- Form to for user to enter their accounts email email -->
+  </div>
+  
+  <br>
+<label for="Email">Password:</label><br>
+  <div class="input-group" style ="width: 50%; margin-left: auto;
+    margin-right: auto; height: 40px;">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input id="password" type="password" class="form-control" name="password" placeholder="Password" required> <!-- Form to for user to enter their accounts password -->
+  </div>
+  <br><br>
+  <button  class = "button" style = "margin:0 auto;
+    display:block;" type="submit">Login</button> <!-- Button that confirms the user to login  -->
+
+</form>
+<br>
+
+<% if (typeof Message !== 'undefined') { %>  
+  <h3><%= Message %></h3>
+<% } %>
+<div style="text-align:center">
+    <a href="\register" class = "signup">Sign up</a>  <!-- Button that brings the user to the login page  -->
+</div>
+</div>
+
+</body>
+</html>

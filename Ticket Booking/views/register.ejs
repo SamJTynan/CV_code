@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div>
+  <a href = "\"><h1 class = "header" >Ticketsaver</h1></a>
+</div>
+<br><br>
+<div class ="centerlogin">
+<h1 class = "centretext" style = "text-align: center" >Create Account</h1> 
+<br>
+<form action="/register" method="POST">
+<label for="Email">Email:</label><br>
+<div  style ="width: 50%; margin-left: auto;
+    margin-right: auto; height: 40px;">
+    <input id="email" type="email" class="form-control" name="email" placeholder="Email" required> <!-- Form to for user to enter their email that will be associated with their account-->
+  </div>
+  
+<label for="Password">Password:</label><br>
+  <div    style ="width: 50%; margin-left: auto;
+    margin-right: auto; height: 40px;">
+    <input id="password" type="password" class="form-control " name="password" placeholder="Password" required> <!-- Form to for user to enter their password that will be associated with their account-->
+  </div>
+  
+  <label  for="Email">Confirm Password:</label><br>
+  <div   style ="width: 50%; margin-left: auto;
+    margin-right: auto; height: 40px;">
+    <input id="passwordconfirmed" type="password" class="form-control " name="passwordconfirmed" placeholder="Password" required> <!-- Form to let the user confirm their password that will be associated with their account-->
+  </div>
+  <div id="msg" style = "text-align:center;" ></div>
+  <br><br>
+  <button  class = "button" style = "margin:0 auto;
+    display:block;" disabled='disabled' type="submit">Confirm</button> 
+
+</form>
+<div style = "text-align:center"> 
+<a href="/login" >Already have an account? Log in here!</a> <!-- Lets the user login in case they already have an account -->
+<% if (typeof Message !== 'undefined') { %>
+  <h3><%= Message %></h3>
+<% } %>
+ </div>
+
+<br>
+
+
+
+</div>
+<script>
+    $(document).ready(function(){ //Function to check if both passwords in both password and passwordconfirmed forms match 
+        $("#passwordconfirmed").keyup(function(){
+             if ($("#password").val() != $("#passwordconfirmed").val()) {
+                 $("#msg").html("Password do not match").css("color","red");
+				  $('.button').prop('disabled', true);
+             }else{
+                 $("#msg").html("Password matched").css("color","green");
+				  $('.button').prop('disabled', false);
+            }
+      });
+});
+</script> 
+</body>
+</html>

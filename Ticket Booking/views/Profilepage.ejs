@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+<div>
+  <a href = "\"><h1 class = "header" >Ticketsaver</h1></a>
+</div>
+</div>
+<br><br>
+<% if (typeof refundmsg !== 'undefined') { %>
+  <h3><%= refundmsg %></h3>
+<% } %>
+
+
+<div class = "container" >
+<div class ="profile-a" > <!-- Div dealing with the left side of the profile page -->
+  <% if (typeof profilemsg !== 'undefined') { %>
+  <h3><%= profilemsg %></h3>
+<% } %>
+      
+    <div class = "profilePicture">  <!-- Div to contain profile picture -->
+      <% if (typeof curr_userpfp !== 'undefined'){ 
+        console.log("curr_pfp = " + curr_userpfp)%>
+      <img id="output" max width="200"  max height = "200" style = "border-radius: 2px 2px 2px 2px" src="/userpfp/<%= curr_userpfp %>"> <!-- Displays the users current pfp and keeps it at the same resolution regardless of file size -->
+      <% } %>
+      <form action = "/pfp" method = "POST" enctype="multipart/form-data">
+        <input  type="file" id = "user_pfp" name="user_pfp" accept="image/*"/> <!--Lets the user pick the picture going to be their pfp through file browsing-->
+        <button  class = "button" type = "submit">Change My Profile Picture</button> <!--Button that lets the user select their profile picturev-->
+    </form>
+
+<br>
+</div>
+<br>
+<br><br>
+
+</div>
+<div class ="profile-b" > <!-- Div dealing with the right side of the profile page -->
+<br>
+<%
+if (typeof usrTickets !== 'undefined') {
+  if(usrTickets.length > 0) { %> <!-- Appears if the user has any tickets attacthed to their account -->
+<button id="btn" class="button"   style = "width: 650px; height : 100px; border-radius: 100px 100px 0px 0px;">My Tickets</button> <!-- Shows the tickets the user bought by making divs containing the information for each one-->
+<br>
+<% } } %>
+<br>
+<br>
+
+
+<a href ="/changePassword"> <button class="button" style = "width: 650px; height : 100px">Change Password</button></a> <!-- Button that that lets the user change their password -->
+<br>
+<br>
+<br>
+
+
+<a href ="/delete"><button class="button"  style = "width: 650px; height : 100px; border-radius: 0px 0px 100px 100px;">Delete Account </button></a> <!-- Button that that lets the user delete their account -->
+
+  
+
+</div>
+</div>
+
+
+
+
+
+<br>
+<div id="ticketshow" class = "ticket" style = "display: none">  <!-- Div to display tickets if the users account has any -->
+<img src = "barcode.png" style = "float:right; width:140px;height:70px" >
+<% 
+    let i = 0;
+    ticlen = usrTickets.length;
+    if (typeof usrTickets !== 'undefined') { %>
+<h3>Ticket Number: <%= usrTickets[i]; %> </h3>
+<% tic1 = usrTickets[i];
+i++; %> 
+<br>
+<h3>Event Name: <%= usrTickets[i]; %></h3>
+<% i++; %>
+<br>
+<h3>Email:<%= usrTickets[i]; %></h3>
+ <% i++;%>
+<br>
+<img src = "testlogo.png" style = "float:right; margin-top:25px;" >
+<h3>Seat Number: <%= usrTickets[i]; %> </h3>
+<% i++ }  %>
+</div>
+
+
+
+
+<div id ="ticketshow2" class = "ticket" style = "display: none"> <!-- Div to display if the user has more than one ticket-->
+  <img src = "barcode.png" style = "float:right; width:140px;height:70px" >
+<% 
+
+    console.log("page test " + usrTickets);
+    console.log("arraylen = " + usrTickets.length);
+    if (typeof usrTickets !== 'undefined') { %>
+<h3>Ticket Number: <%= usrTickets[i]; %> </h3>
+<% tic1 = usrTickets[i];
+i++; %> 
+<br>
+<h3>Event Name:<%= usrTickets[i]; %></h3>
+ <% i++;%>
+<h3>Email:<%= usrTickets[i]; %></h3>
+ <% i++;%>
+<br>
+<img src = "testlogo.png" style = "float:right; margin-top:25px;" >
+<h3>Seat Number: <%= usrTickets[i]; %> </h3>
+<% i++ }  %>
+  
+</div>
+
+<div id ="ticketshow3" class = "ticket" style = "display: none"> <!-- Div to display if the user has more than two tickets -->
+  <img src = "barcode.png" style = "float:right; width:140px;height:70px" >
+<% 
+
+    console.log("page test " + usrTickets);
+    console.log("arraylen = " + usrTickets.length);
+    if (typeof usrTickets !== 'undefined') { %>
+<h3>Ticket Number: <%= usrTickets[i]; %> </h3>
+<% tic1 = usrTickets[i];
+i++; %> 
+<br>
+<h3>Event Name:<%= usrTickets[i]; %></h3>
+ <% i++;%>
+ <br>
+<h3>Email:<%= usrTickets[i]; %></h3>
+ <% i++;%>
+<br>
+<img src = "testlogo.png" style = "float:right; margin-top:25px;" >
+<h3>Seat Number: <%= usrTickets[i]; %> </h3>
+<% i++ }  %>
+  
+</div>
+<% if(usrTickets.length > 0) { %>
+<form method="post" action="/refund">
+  <label for="seatnum">Ticket number to refund</label><br>
+        <div class="input-group" style ="width: 50%; margin-left: auto;
+            margin-right: auto; height: 40px;">
+            <input id="ticnum" type="number" class="form-control" name="refundtic" placeholder="0" required> <!-- Field to let customer pick what ticket to refund --> 
+          </div>
+          
+          <br> <!-- Button to let the user confirm to refund their ticket selection  -->
+        
+          <button  class = "button" style = "margin:0 auto;
+            display:block;" type="submit">Refund Ticket</button>
+        </form>
+<% } %>
+
+<script>
+$(document).ready(function () { // Deals with hiding and showing the ticket divs 
+    $("#btn").click(function () {
+        $("#ticketshow").toggle("slow");
+
+        //shows error but can be ignored. Works as intened
+        var ticlenscript = <%= ticlen %>;
+        if( ticlenscript > 4){
+          $("#ticketshow2").toggle("slow");
+        }
+        if( ticlenscript > 8){
+          $("#ticketshow3").toggle("slow");
+        }
+    });
+});
+</script>
+
+<br>
+</body>
+</html>
